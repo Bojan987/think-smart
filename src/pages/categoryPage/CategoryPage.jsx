@@ -41,7 +41,7 @@ const CategoryPage = () => {
             {loading === false && meals.meals && meals.meals.length > 0 ? (
               <>
                 <CardList
-                  dataList={[meals.meals[2]]}
+                  dataList={[meals.meals[0]]}
                   search=""
                   apiKeyword="Meal"
                   pagination={true}
