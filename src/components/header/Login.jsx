@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState,useRef,useEffect } from "react";
 import { Form, Button } from "react-bootstrap";
 import { useDispatch } from "react-redux";
 import {  login } from "../../actions/loginAction";
@@ -6,7 +6,23 @@ import {  login } from "../../actions/loginAction";
 const Login = ({ setShow }) => {
   const [user, setUser] = useState({ email: "", password: "" });
   const registeredUser = { email: "test@test.com", password: "test" };
-  
+/////////
+  const myRef = useRef();
+
+  const handleClickOutside = e => {
+      if (!myRef.current.contains(e.target)) {
+          setShow(false);
+      }
+  };
+
+  const handleClickInside = () => setShow(true);
+
+  useEffect(() => {
+      document.addEventListener('mousedown', handleClickOutside);
+      return () => document.removeEventListener('mousedown', handleClickOutside);
+  });
+
+  ///////////
 
   const dispatch = useDispatch();
   const handlesValidation = () => {
@@ -21,6 +37,7 @@ const Login = ({ setShow }) => {
 
   const handleChange = (e) => {
     const { name, value } = e.target;
+     
     setUser((previous) => {
       return {
         ...previous,
@@ -37,8 +54,12 @@ const Login = ({ setShow }) => {
     }
   };
 
+
+
+ 
+
   return (
-    <Form onSubmit={handleOnSubmit}>
+    <Form onSubmit={handleOnSubmit} ref={myRef} onClick={handleClickInside}>
       <Form.Group>
         <Form.Label>Email address</Form.Label>
         <Form.Control
