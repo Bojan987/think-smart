@@ -1,24 +1,43 @@
-import logo from './logo.svg';
-import './App.css';
+import { BrowserRouter as Router, Route, Redirect } from "react-router-dom";
+import Header from "./components/header/Header";
+import Footer from "./components/footer/Footer";
+import { Container } from "react-bootstrap";
+import CategoryPage from "./pages/categoryPage/CategoryPage";
+import HomePage from "./pages/homepage/HomePage";
+import SingleMealPage from "./pages/singleMealPage/SingleMealPage";
+import SearchPage from "./pages/searchPage/SearchPage";
+import MyMeals from "./pages/myMealspage/MyMeals";
+import ScrollToTop from "./components/ScrollToTop";
+import { useSelector } from "react-redux";
+;
+
 
 function App() {
+
+
+  const isLogedIn = useSelector(state => state.logedin)
+  
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <Router>
+      <Header />
+      <main className="py-3">
+        <Container>
+          <Route path="/" component={HomePage} exact />
+          <ScrollToTop />
+          <Route path="/category/:id" component={CategoryPage} exact />
+
+          <Route path="/meal/:id" component={SingleMealPage} exact />
+
+          <Route path="/search" component={SearchPage} exact />
+
+          {/* { isLogedIn.logedin ? */}
+            <Route path="/mymeals" component={MyMeals} exact />
+          {/* :
+          <Redirect to='/'/>} */}
+        </Container>
+      </main>
+      <Footer />
+    </Router>
   );
 }
 
