@@ -1,15 +1,14 @@
-import React, { useState,useEffect } from "react";
+import React, { useState } from "react";
 import { Form, Button } from "react-bootstrap";
-import { useDispatch, useSelector } from "react-redux";
-import { logedIn, login } from "../../actions/loginAction";
+import { useDispatch } from "react-redux";
+import {  login } from "../../actions/loginAction";
 
-const Login = ({setShow}) => {
-
+const Login = ({ setShow }) => {
   const [user, setUser] = useState({ email: "", password: "" });
   const registeredUser = { email: "test@test.com", password: "test" };
-  const isLogedIn = useSelector(state=>state.logedin)
- 
-  const dispatch = useDispatch()
+  
+
+  const dispatch = useDispatch();
   const handlesValidation = () => {
     if (
       user.email.trim() !== "" &&
@@ -19,8 +18,6 @@ const Login = ({setShow}) => {
     )
       return true;
   };
-
-  
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -33,10 +30,10 @@ const Login = ({setShow}) => {
   };
 
   const handleOnSubmit = (e) => {
-    e.preventDefault()
+    e.preventDefault();
     if (handlesValidation()) {
       dispatch(login());
-      setShow(false)
+      setShow(false);
     }
   };
 
@@ -51,7 +48,7 @@ const Login = ({setShow}) => {
           required
           value={user.email}
           onChange={handleChange}
-          variant='warning'
+          variant="warning"
         />
       </Form.Group>
 

@@ -18,16 +18,23 @@ const Footer = () => {
           </Col>
           <Col className="socials py-3" sm={6} xs={8} md={{ order: 3 }}>
             <a
+              rel="noreferrer"
               href="https://www.facebook.com/"
               target="_blank"
               className="link"
             >
               <i className="fab fa-facebook fa-2x"></i>
             </a>
-            <a href="https://www.github.com/" target="_blank" className="link">
+            <a
+              rel="noreferrer"
+              href="https://www.github.com/"
+              target="_blank"
+              className="link"
+            >
               <i className="fab fa-github  ml-3 fa-2x"></i>
             </a>
             <a
+              rel="noreferrer"
               href="https://www.linkedin.com/"
               target="_blank"
               className="link"

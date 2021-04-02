@@ -9,14 +9,9 @@ import SearchPage from "./pages/searchPage/SearchPage";
 import MyMeals from "./pages/myMealspage/MyMeals";
 import ScrollToTop from "./components/ScrollToTop";
 import { useSelector } from "react-redux";
-;
-
-
 function App() {
+  const isLogedIn = useSelector((state) => state.logedin);
 
-
-  const isLogedIn = useSelector(state => state.logedin)
-  
   return (
     <Router>
       <Header />
@@ -30,10 +25,11 @@ function App() {
 
           <Route path="/search" component={SearchPage} exact />
 
-          {/* { isLogedIn.logedin ? */}
+          {isLogedIn.logedin ? (
             <Route path="/mymeals" component={MyMeals} exact />
-          {/* :
-          <Redirect to='/'/>} */}
+          ) : (
+            <Redirect to="/" />
+          )}
         </Container>
       </main>
       <Footer />

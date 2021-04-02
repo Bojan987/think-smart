@@ -10,44 +10,45 @@ const CardList = ({
   search,
   pagination,
   apiKeyword,
-  link
+  link,
 }) => {
   const [filteredData, setFilteredData] = useState(dataList);
   const [page, setPage] = useState(0);
 
   const paginate = (itemList) => {
-    
     const numberOfPages =
-    itemList !== null && Math.ceil(itemList.length / itemsPerPage);
+      itemList !== null && Math.ceil(itemList.length / itemsPerPage);
     const paginatedList = Array.from({ length: numberOfPages }, (_, idx) => {
       const start = idx * itemsPerPage;
       return itemList.slice(start, start + itemsPerPage);
     });
-    
+
     return paginatedList;
   };
   
-  const [paginatedList,setPaginatedList]=useState(paginate(dataList))
+  const [paginatedList, setPaginatedList] = useState(paginate(dataList));
 
   useEffect(() => {
     if (search !== "") {
       setPage(0);
-      const temp = dataList.filter((el) =>
-        el.strMeal.toLowerCase().includes(search.toLowerCase()) || (el.strCategory&&el.strCategory.toLowerCase().includes(search.toLowerCase()))
+      const temp = dataList.filter(
+        (el) =>
+          el.strMeal.toLowerCase().includes(search.toLowerCase()) ||
+          (el.strCategory &&
+            el.strCategory.toLowerCase().includes(search.toLowerCase()))
       );
       setFilteredData(temp);
-      
     }
-  }, [search,dataList]);
+  }, [search, dataList]);
   
-  //  useEffect(()=>{
-  //    dataList.pop()
-  //  },[])
-  useEffect(()=>{
-    if(search==='') {setPaginatedList(paginate(dataList))}
-    else setPaginatedList(paginate(filteredData))
 
-  },[search,dataList,filteredData])
+ 
+  useEffect(() => {
+    if (search === "") {
+      setPaginatedList(paginate(dataList));
+      /* eslint-disable */
+    } else setPaginatedList(paginate(filteredData));
+  }, [search, dataList, filteredData]);
  
   return (
     <>
@@ -57,11 +58,16 @@ const CardList = ({
             {paginatedList &&
             paginatedList.length !== 0 &&
             paginatedList[page] ? (
-              
-              paginatedList[page].map((el,idx) => {
-                
-               return <PaginatedCard el={el} apiKeyword={apiKeyword} key={idx} link={link}/>
-            })
+              paginatedList[page].map((el, idx) => {
+                return (
+                  <PaginatedCard
+                    el={el}
+                    apiKeyword={apiKeyword}
+                    key={idx}
+                    link={link}
+                  />
+                );
+              })
             ) : (
               <h2>Sorry we could not find this {apiKeyword}</h2>
             )}
@@ -76,9 +82,14 @@ const CardList = ({
         </>
       ) : (
         <>
-          {dataList.map((el,idx) => {
+          {dataList.map((el, idx) => {
             return (
-              <LinkedCard el={el} apiKeyword={apiKeyword} key={idx} link={link}/>
+              <LinkedCard
+                el={el}
+                apiKeyword={apiKeyword}
+                key={idx}
+                link={link}
+              />
             );
           })}
         </>
@@ -89,7 +100,6 @@ const CardList = ({
 
 CardList.defaultProps = {
   search: "",
-  
 };
 
 export default CardList;

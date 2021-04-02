@@ -7,19 +7,19 @@ import Message from "../../components/Message";
 
 const SearchPage = () => {
   const searchDetails = useSelector((state) => state.searchResult);
-  const randomMeal = useSelector(state=>state.randomMeal)
+  const randomMeal = useSelector((state) => state.randomMeal);
   const { loading, error, meals } = searchDetails;
-  const {  meals:meal } = randomMeal
+  const { meals: meal } = randomMeal;
   const [categories, setCategories] = useState([]);
   const [select, setSelect] = useState("");
 
   useEffect(() => {
-    if (!loading && meals &&meals.meals&& meals.meals.length > 0) {
+    if (!loading && meals && meals.meals && meals.meals.length > 0) {
       const temp = meals.meals.map((el) => el.strCategory);
       const unique = new Set(temp);
       setCategories([...unique]);
     }
-  }, [loading, meals.meals]);
+  }, [loading, meals.meals,meals]);
 
   const handleSelect = (e) => {
     setSelect(e.target.value);
@@ -31,12 +31,11 @@ const SearchPage = () => {
         <h3>Search Results</h3>
       </Row>
       <section className="py-4 ">
-          
-                <h4 className='py-4 text-center'>We recommend</h4>
-      {loading === false && meal.meals && meal.meals.length > 0 ? (
+        <h4 className="py-4 text-center">We recommend</h4>
+        {loading === false && meal.meals && meal.meals.length > 0 ? (
           <CardList
             dataList={meal.meals}
-            search=''
+            search=""
             apiKeyword="Meal"
             pagination={true}
             itemsPerPage={3}
@@ -44,29 +43,29 @@ const SearchPage = () => {
         ) : error ? (
           <Message variant="danger">{error}</Message>
         ) : (
-          <Loader/>
+          <Loader />
         )}
-         
-       
       </section>
-      {loading === false &&categories&&<Row className="py-4">
-        <Col md={{ span: 2, offset: 10 }}>
-          <Form onChange={handleSelect}>
-            <Form.Label>Select Category</Form.Label>
-            <Form.Control as="select" size="sm">
-              <option value="">All</option>
-              {loading === false &&
-                categories &&
-                categories.length > 0 &&
-                categories.map((el) => (
-                  <option value={el} key={el}>
-                    {el}
-                  </option>
-                ))}
-            </Form.Control>
-          </Form>
-        </Col>
-      </Row>}
+      {loading === false && categories && (
+        <Row className="py-4">
+          <Col md={{ span: 2, offset: 10 }}>
+            <Form onChange={handleSelect}>
+              <Form.Label>Select Category</Form.Label>
+              <Form.Control as="select" size="sm">
+                <option value="">All</option>
+                {loading === false &&
+                  categories &&
+                  categories.length > 0 &&
+                  categories.map((el) => (
+                    <option value={el} key={el}>
+                      {el}
+                    </option>
+                  ))}
+              </Form.Control>
+            </Form>
+          </Col>
+        </Row>
+      )}
       <main>
         {loading === false && meals.meals && meals.meals.length > 0 ? (
           <CardList

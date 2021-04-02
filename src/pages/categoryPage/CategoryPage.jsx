@@ -7,7 +7,7 @@ import CardList from "../../components/CardList/CardList";
 import Loader from "../../components/Loader";
 import Message from "../../components/Message";
 
-import _ from "lodash";
+
 
 const CategoryPage = () => {
   const { id } = useParams();
@@ -24,8 +24,6 @@ const CategoryPage = () => {
   const handleSearch = (e) => {
     setSearch(e.target.value);
   };
-
-
 
   return (
     <>

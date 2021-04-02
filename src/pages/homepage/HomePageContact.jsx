@@ -1,9 +1,7 @@
 import React, { useState } from "react";
 import { Col, Row, Button, Form } from "react-bootstrap";
 
-
 const HomePageContact = () => {
-  
   const [classes, setClasses] = useState("");
   const [message, setmessage] = useState({
     firstName: "",

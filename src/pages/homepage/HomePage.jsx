@@ -16,8 +16,8 @@ const HomePage = () => {
   const categoryList = useSelector((state) => state.categoryList);
   const { loading, error, categories } = categoryList;
   const about = useRef();
-  const contact = useRef()
-  const history=useHistory()
+  const contact = useRef();
+  const history = useHistory();
   let {
     location: { hash },
   } = useHistory();
@@ -56,8 +56,7 @@ const HomePage = () => {
         clearTimeout(timer);
       };
     }
-
-  }, [hash,history]);
+  }, [hash, history]);
   return (
     <>
       <header>
@@ -67,10 +66,15 @@ const HomePage = () => {
         <h3 className="text-center"> Pick one of our Categories</h3>
         {loading === false ? (
           <Row>
-            <CardList dataList={categories.categories} pagination={false} apiKeyword='Category' search=''/>
+            <CardList
+              dataList={categories.categories}
+              pagination={false}
+              apiKeyword="Category"
+              search=""
+            />
           </Row>
         ) : error ? (
-          <Message variant='danger'>{error}</Message>
+          <Message variant="danger">{error}</Message>
         ) : (
           <Loader />
         )}
@@ -78,7 +82,7 @@ const HomePage = () => {
       <section id="about" className="py-4" ref={about}>
         <HomePageAbout />
       </section>
-      <section id="contact" className="py-4" ref = {contact}>
+      <section id="contact" className="py-4" ref={contact}>
         <HomePageContact />
       </section>
     </>
