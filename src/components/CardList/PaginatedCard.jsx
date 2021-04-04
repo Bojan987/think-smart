@@ -1,10 +1,16 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import { Card, Col } from "react-bootstrap";
+import { listMeal } from "../../actions/mealsActions";
+import { useDispatch } from "react-redux";
 
-const PaginatedCard = ({ apiKeyword, el, link,size }) => {
+const PaginatedCard = ({ apiKeyword, el, link, size, category }) => {
+  const dispatch = useDispatch();
+  const handleClick = () => {
+    category && dispatch(listMeal(category));
+  };
   return (
-    <Col xs={11} md={size ? size : 3}>
+    <Col xs={11} md={size ? size : 3} onClick={handleClick}>
       <Link
         to={
           link ? link : `/${apiKeyword.toLowerCase()}/${el[`id` + apiKeyword]}`

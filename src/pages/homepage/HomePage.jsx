@@ -31,10 +31,7 @@ const HomePage = () => {
       const timer = setTimeout(() => {
         about.current.scrollIntoView({
           behavior: "smooth",
-          alignToTop: true,
         });
-
-        
       }, 400);
 
       return () => {
@@ -46,10 +43,7 @@ const HomePage = () => {
       const timer = setTimeout(() => {
         about.current.scrollIntoView({
           behavior: "smooth",
-          alignToTop: true,
         });
-
-        
       }, 400);
 
       return () => {

@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { Row,Col } from "react-bootstrap";
+import { Row, Col } from "react-bootstrap";
 import PaginationItem from "./CardListPaginationItem";
 import PaginatedCard from "./PaginatedCard";
 import LinkedCard from "./LinkedCard";
@@ -11,7 +11,8 @@ const CardList = ({
   pagination,
   apiKeyword,
   link,
-  size
+  size,
+  category,
 }) => {
   const [filteredData, setFilteredData] = useState(dataList);
   const [page, setPage] = useState(0);
@@ -26,7 +27,7 @@ const CardList = ({
 
     return paginatedList;
   };
-  
+
   const [paginatedList, setPaginatedList] = useState(paginate(dataList));
 
   useEffect(() => {
@@ -41,16 +42,14 @@ const CardList = ({
       setFilteredData(temp);
     }
   }, [search, dataList]);
-  
 
- 
   useEffect(() => {
     if (search === "") {
       setPaginatedList(paginate(dataList));
       /* eslint-disable */
     } else setPaginatedList(paginate(filteredData));
   }, [search, dataList, filteredData]);
- 
+
   return (
     <>
       {pagination ? (
@@ -67,6 +66,7 @@ const CardList = ({
                     key={idx}
                     link={link}
                     size={size}
+                    category={category ? category : el?.strCategory}
                   />
                 );
               })
@@ -86,13 +86,8 @@ const CardList = ({
         <>
           {dataList.map((el, idx) => {
             return (
-              <Col md={size?size :3} xs={12}  key={idx}>
-              <LinkedCard
-                el={el}
-                apiKeyword={apiKeyword}
-               
-                link={link}
-              />
+              <Col md={size ? size : 3} xs={12} key={idx}>
+                <LinkedCard el={el} apiKeyword={apiKeyword} link={link} />
               </Col>
             );
           })}

@@ -19,7 +19,7 @@ const SearchPage = () => {
       const unique = new Set(temp);
       setCategories([...unique]);
     }
-  }, [loading, meals.meals,meals]);
+  }, [loading, meals.meals, meals]);
 
   const handleSelect = (e) => {
     setSelect(e.target.value);
@@ -39,6 +39,7 @@ const SearchPage = () => {
             apiKeyword="Meal"
             pagination={true}
             itemsPerPage={3}
+            category={meal.meals[0].strCategory}
           />
         ) : error ? (
           <Message variant="danger">{error}</Message>

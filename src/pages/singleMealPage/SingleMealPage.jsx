@@ -16,16 +16,13 @@ const SingleMealPage = () => {
   const similarMeals = useSelector((state) => state.mealList);
   const mealInfo = useSelector((state) => state.mealDetails);
   const { loading, error, meals } = mealInfo;
-  const {  meals:similar } = similarMeals;
-
-
-
+  const { meals: similar, loading: loadingSimilarMeals } = similarMeals;
 
   return (
     <>
-      {loading === false && meals.meals ? (
+      {loading === false && loadingSimilarMeals === false && meals.meals ? (
         <>
-          <Row >
+          <Row>
             <Col md={6} className="singleCardImg">
               <CardList
                 dataList={meals.meals}
@@ -43,19 +40,19 @@ const SingleMealPage = () => {
               <p>{meals.meals[0].strInstructions}</p>
             </Col>
           </Row>
-          <Row className='py-4 text-center justify-content-center'>
-          <h4>Similar meals </h4>
+          <Row className="py-4 text-center justify-content-center">
+            <h4>Similar meals </h4>
           </Row>
           <Row>
-            
             <CardList
-                  dataList={similar.meals.sort(() => Math.random() - Math.random()).slice(0, 3)}
-                  search=""
-                  apiKeyword="Meal"
-                  pagination={true}
-                  itemsPerPage={3}
-                  
-                />
+              dataList={similar.meals
+                .sort(() => Math.random() - Math.random())
+                .slice(0, 3)}
+              search=""
+              apiKeyword="Meal"
+              pagination={true}
+              itemsPerPage={3}
+            />
           </Row>
         </>
       ) : error ? (
