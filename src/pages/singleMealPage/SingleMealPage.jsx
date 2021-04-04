@@ -16,14 +16,16 @@ const SingleMealPage = () => {
   const similarMeals = useSelector((state) => state.mealList);
   const mealInfo = useSelector((state) => state.mealDetails);
   const { loading, error, meals } = mealInfo;
+  const {  meals:similar } = similarMeals;
 
-  useEffect(() => {}, [similarMeals]);
+
+
 
   return (
     <>
       {loading === false && meals.meals ? (
         <>
-          <Row className="align-items-center">
+          <Row >
             <Col md={6} className="singleCardImg">
               <CardList
                 dataList={meals.meals}
@@ -31,6 +33,7 @@ const SingleMealPage = () => {
                 apiKeyword="Meal"
                 search=""
                 link={`/category/${meals.meals[0].strCategory}`}
+                size={7}
               />
             </Col>
             <Col className="mealDetails">
@@ -40,14 +43,19 @@ const SingleMealPage = () => {
               <p>{meals.meals[0].strInstructions}</p>
             </Col>
           </Row>
+          <Row className='py-4 text-center justify-content-center'>
+          <h4>Similar meals </h4>
+          </Row>
           <Row>
-            {/* <CardList
-                  dataList={}
+            
+            <CardList
+                  dataList={similar.meals.sort(() => Math.random() - Math.random()).slice(0, 3)}
                   search=""
                   apiKeyword="Meal"
                   pagination={true}
-                  itemsPerPage={4}
-                /> */}
+                  itemsPerPage={3}
+                  
+                />
           </Row>
         </>
       ) : error ? (

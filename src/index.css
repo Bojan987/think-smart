@@ -28,7 +28,7 @@ justify-content: center;
 }
 .pagination{
   margin: auto;
-  
+  padding-top: 20px;
 }
 .recomendedImg{
   display: flex;

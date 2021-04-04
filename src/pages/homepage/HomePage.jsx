@@ -34,8 +34,8 @@ const HomePage = () => {
           alignToTop: true,
         });
 
-        // history.push('/')
-      }, 300);
+        
+      }, 400);
 
       return () => {
         clearTimeout(timer);
@@ -49,8 +49,8 @@ const HomePage = () => {
           alignToTop: true,
         });
 
-        // history.push('/')
-      }, 300);
+        
+      }, 400);
 
       return () => {
         clearTimeout(timer);

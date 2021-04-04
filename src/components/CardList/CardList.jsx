@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { Row } from "react-bootstrap";
+import { Row,Col } from "react-bootstrap";
 import PaginationItem from "./CardListPaginationItem";
 import PaginatedCard from "./PaginatedCard";
 import LinkedCard from "./LinkedCard";
@@ -11,6 +11,7 @@ const CardList = ({
   pagination,
   apiKeyword,
   link,
+  size
 }) => {
   const [filteredData, setFilteredData] = useState(dataList);
   const [page, setPage] = useState(0);
@@ -65,6 +66,7 @@ const CardList = ({
                     apiKeyword={apiKeyword}
                     key={idx}
                     link={link}
+                    size={size}
                   />
                 );
               })
@@ -84,12 +86,14 @@ const CardList = ({
         <>
           {dataList.map((el, idx) => {
             return (
+              <Col md={size?size :3} xs={12}  key={idx}>
               <LinkedCard
                 el={el}
                 apiKeyword={apiKeyword}
-                key={idx}
+               
                 link={link}
               />
+              </Col>
             );
           })}
         </>

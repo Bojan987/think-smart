@@ -16,14 +16,21 @@ import Search from "./Search";
 const Header = () => {
   const [show, setShow] = useState(false);
   const target = useRef(null);
-  const { location } = useHistory();
+  const history = useHistory();
   const dispatch = useDispatch();
   const [isHome, setIsHome] = useState(null);
   const isLogedin = useSelector((state) => state.logedin);
 
+
   useEffect(() => {
-    setIsHome(location.pathname);
-  }, [location.pathname]);
+    const unlisten = history.listen(() => {
+      history.location.pathname ==='/' ? setIsHome(true) : setIsHome(false)
+    });
+    
+    return () => {
+      unlisten();
+    };
+  }, [history,isHome]);
 
   return (
     <header>
@@ -60,7 +67,7 @@ const Header = () => {
                 </Nav.Link>
               )}
 
-              {isHome !== "/" && (
+              {!isHome && (
                 <LinkContainer to="/">
                   <Nav.Link>Home</Nav.Link>
                 </LinkContainer>

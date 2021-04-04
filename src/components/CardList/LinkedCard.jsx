@@ -11,7 +11,7 @@ const LinkedCard = ({ el, apiKeyword, link }) => {
       className="link"
       key={el["id" + apiKeyword]}
     >
-      <Card style={{ width: "16rem" }} className="m-2 card">
+      <Card  className="my-3 card">
         <Card.Img variant="top" src={el["str" + apiKeyword + "Thumb"]} />
         <Card.Body>
           <Card.Title>{el["str" + apiKeyword]}</Card.Title>

@@ -1,6 +1,6 @@
 import { LOGOUT, LOGIN_REQUEST } from "../constants/userConstants";
 
-export const loginReducer = (state = {}, action) => {
+export const loginReducer = (state = {logedin:false}, action) => {
   switch (action.type) {
     case LOGOUT:
       return { logedin: action.payload };
