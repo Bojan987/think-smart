@@ -9,7 +9,7 @@ import SearchPage from "./pages/searchPage/SearchPage";
 import MyMeals from "./pages/myMealspage/MyMeals";
 import ScrollToTop from "./components/ScrollToTop";
 import { useSelector } from "react-redux";
-import Switch from "react-bootstrap/esm/Switch";
+
 
 function App() {
   const isLogedIn = useSelector((state) => state.logedin);
@@ -20,7 +20,7 @@ function App() {
       <Header />
       <main className="py-3">
         <Container>
-          <Switch>
+          
             
             <Route path="/" component={HomePage} exact />
             <ScrollToTop />
@@ -36,7 +36,7 @@ function App() {
               <Route path="/mymeals" component={MyMeals} exact />
             )}
           
-          </Switch>
+          
         </Container>
       </main>
       <Footer />
