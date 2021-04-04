@@ -10,7 +10,7 @@ In the project directory, you can run:
 ### `npm install`
 ### `npm start`
 
- To start the project Close repository and run command npm install and then npm start
+ To start the project Clone repository and run command npm install and then npm start
 
  ### Project technology
 
