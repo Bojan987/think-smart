@@ -18,10 +18,39 @@ const SingleMealPage = () => {
   const { loading, error, meals } = mealInfo;
   const { meals: similar, loading: loadingSimilarMeals } = similarMeals;
 
+  const mealIngredients = (meal) => {
+    let ingrediantKey = Object.keys(meal).filter((el) =>
+      el.includes("strIngredient")
+    );
+    
+    let ingrediantMesure = Object.keys(meal).filter((el) =>
+      el.includes("strMeasure")
+    );
+    console.log(meal);
+    
+    return (
+      <div>
+        <h4 className="py-3">Ingrediants:</h4>
+        {ingrediantKey.map((el, idx) => {
+          return (
+            <div>
+              
+        {meal[ingrediantKey[idx]] !== "" && (
+          <p key={idx}>
+            {meal[ingrediantKey[idx]]} : {meal[ingrediantMesure[idx]]}{" "}
+          </p>
+        )}
+            </div>);
+        })}
+      </div>
+    );
+  };
+
   return (
     <>
       {loading === false && loadingSimilarMeals === false && meals.meals ? (
         <>
+          
           <Row>
             <Col md={6} className="singleCardImg">
               <CardList
@@ -38,6 +67,7 @@ const SingleMealPage = () => {
               <p>{meals.meals[0].strArea} </p>
               <h4>Instructions</h4>
               <p>{meals.meals[0].strInstructions}</p>
+              {mealIngredients(meals.meals[0])}
             </Col>
           </Row>
           <Row className="py-4 text-center justify-content-center">
