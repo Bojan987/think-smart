@@ -17,6 +17,7 @@ const HomePage = () => {
   const { loading, error, categories } = categoryList;
   const about = useRef();
   const contact = useRef();
+  const category = useRef();
   const history = useHistory();
   let {
     location: { hash },
@@ -41,7 +42,19 @@ const HomePage = () => {
 
     if (hash === "#contact") {
       const timer = setTimeout(() => {
-        about.current.scrollIntoView({
+        contact.current.scrollIntoView({
+          behavior: "smooth",
+        });
+      }, 400);
+
+      return () => {
+        clearTimeout(timer);
+      };
+    }
+
+    if (hash === "#category") {
+      const timer = setTimeout(() => {
+        category.current.scrollIntoView({
           behavior: "smooth",
         });
       }, 400);
@@ -56,7 +69,7 @@ const HomePage = () => {
       <header>
         <HomePageHeader />
       </header>
-      <main className="py-4 " id="categories">
+      <main className="py-4 " id="categories" ref={category}>
         <h3 className="text-center"> Pick one of our Categories</h3>
         {loading === false ? (
           <Row>

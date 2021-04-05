@@ -1,5 +1,6 @@
 import React from "react";
 import { Col, Row, Button, Image } from "react-bootstrap";
+import { LinkContainer } from "react-router-bootstrap";
 const HomePageHeader = () => {
   return (
     <>
@@ -17,9 +18,11 @@ const HomePageHeader = () => {
             </p>
           </div>
 
-          <a href="#categories">
+          <LinkContainer to='#category'>
+          
             <Button>Categories</Button>
-          </a>
+          </LinkContainer>
+          
         </Col>
         <Col className="d-none d-md-block">
           <Image
