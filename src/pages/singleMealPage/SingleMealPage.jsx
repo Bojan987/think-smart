@@ -33,10 +33,10 @@ const SingleMealPage = () => {
         <h4 className="py-3">Ingrediants:</h4>
         {ingrediantKey.map((el, idx) => {
           return (
-            <div>
+            <div key={idx}>
               
-        {meal[ingrediantKey[idx]] !== "" && (
-          <p key={idx}>
+        {meal[ingrediantKey[idx]] && meal[ingrediantKey[idx]] !== "" && meal[ingrediantMesure[idx]] !== "" && meal[ingrediantMesure[idx]] !== " " && (
+          <p >
             {meal[ingrediantKey[idx]]} : {meal[ingrediantMesure[idx]]}{" "}
           </p>
         )}
