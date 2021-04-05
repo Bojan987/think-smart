@@ -26,7 +26,7 @@ const SingleMealPage = () => {
     let ingrediantMesure = Object.keys(meal).filter((el) =>
       el.includes("strMeasure")
     );
-    console.log(meal);
+    
     
     return (
       <div>
